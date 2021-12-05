@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Clean Arch MemoryNotes</string>
+    <string name="app_name">Memory Notes</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_note_btn">Add new note btn</string>
 </resources>
