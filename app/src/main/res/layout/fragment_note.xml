@@ -38,7 +38,7 @@
         android:layout_margin="@dimen/standard_margin"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_save_fab"
+        android:src="@drawable/ic_save_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/save_a_note" />
