@@ -1,4 +1,4 @@
-package com.example.cleanarchmemorynotes
+package com.vikk.cleanarchmemorynotes
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

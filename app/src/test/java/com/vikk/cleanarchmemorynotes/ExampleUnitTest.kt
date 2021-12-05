@@ -1,4 +1,4 @@
-package com.example.cleanarchmemorynotes
+package com.vikk.cleanarchmemorynotes
 
 import org.junit.Test
 
