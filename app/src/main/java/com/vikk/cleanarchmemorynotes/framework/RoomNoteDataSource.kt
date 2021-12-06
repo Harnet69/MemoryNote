@@ -12,7 +12,7 @@ import com.vikk.core.repository.NoteDataSource
 class RoomNoteDataSource(context: Context): NoteDataSource {
     private val noteDao = DatabaseService.getInstance(context).noteDAO()
 
-    override suspend fun add(note: Note) = noteDao.addNoteEntity(NoteEntity.fromNote(note))
+    override suspend fun add(note: Note): Long? = noteDao.addNoteEntity(NoteEntity.fromNote(note))
 
     override suspend fun getById(id: Long) = noteDao.getNoteEntity(id)?.toNote()
 

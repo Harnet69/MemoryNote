@@ -7,11 +7,11 @@ import com.vikk.core.data.Note
  */
 interface NoteDataSource {
 
-    suspend fun add(note: Note)
+    suspend fun add(note: Note): Long?
 
     suspend fun getById(id: Long): Note?
 
     suspend fun getAll(): List<Note>
 
-    suspend fun remove(note: Note): Unit
+    suspend fun remove(note: Note)
 }
