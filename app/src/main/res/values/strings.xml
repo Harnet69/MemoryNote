@@ -5,4 +5,8 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="save_a_note">Save a note</string>
+    <string name="last_updated">Last updated</string>
+    <string name="note_item_title">Title: %1$s</string>
+    <string name="note_item_context">Context: %1$s</string>
+    <string name="note_item_date">Date: %1$s</string>
 </resources>

@@ -6,7 +6,7 @@
     tools:context="com.vikk.cleanarchmemorynotes.presentation.NotesListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notesLIstView"
+        android:id="@+id/notesListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
