@@ -40,15 +40,16 @@ class NotesListAdapter(val action: ListAction): RecyclerView.Adapter<NotesListAd
 
     inner class NotesListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         private val noteTitle: TextView = itemView.findViewById(R.id.note_item_title)
-        val noteContent: TextView = itemView.findViewById(R.id.note_item_content)
+        private val noteContent: TextView = itemView.findViewById(R.id.note_item_content)
         private val noteDate: TextView = itemView.findViewById(R.id.note_item_date)
+        private val noteWordsAmount: TextView = itemView.findViewById(R.id.note_item_words_amount)
 
         fun bind(note: Note) {
             itemView.apply {
                 noteTitle.text = context.getString(R.string.note_item_title, note.title)
                 noteContent.text = context.getString(R.string.note_item_context, note.content)
-                noteDate.text =
-                    context.getString(R.string.note_item_date, Date(note.updateTime).toString())
+                noteDate.text = context.getString(R.string.note_item_date, Date(note.updateTime).toString())
+                noteWordsAmount.text = note.wordsCount.toString()
             }
 
             itemView.setOnClickListener {

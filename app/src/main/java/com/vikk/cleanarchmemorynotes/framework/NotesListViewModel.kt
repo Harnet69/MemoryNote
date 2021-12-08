@@ -47,7 +47,9 @@ class NotesListViewModel(application: Application) : AndroidViewModel(applicatio
         coroutineScope.launch {
             //delay for testing purposes
             delay(1000L)
-            notesList.postValue(useCases.getAllNotes())
+            val notes = useCases.getAllNotes()
+            notes.forEach { it.wordsCount = useCases.getWordsCount.invoke(it).toLong() }
+            notesList.postValue(notes)
         }
     }
 }

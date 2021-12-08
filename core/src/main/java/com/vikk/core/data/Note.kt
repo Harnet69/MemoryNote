@@ -8,5 +8,6 @@ data class Note(
     var content: String,
     var creationTime: Long,
     var updateTime: Long,
-    val id: Long = 0
+    val id: Long = 0,
+    var wordsCount: Long = 0L
 )

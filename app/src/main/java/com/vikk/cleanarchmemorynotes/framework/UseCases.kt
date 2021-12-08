@@ -1,9 +1,6 @@
 package com.vikk.cleanarchmemorynotes.framework
 
-import com.vikk.core.usecase.AddNote
-import com.vikk.core.usecase.GetAllNotes
-import com.vikk.core.usecase.GetNote
-import com.vikk.core.usecase.RemoveNote
+import com.vikk.core.usecase.*
 
 /*
     for Dependency injection purposes
@@ -14,5 +11,6 @@ data class UseCases(
     val addNote: AddNote,
     val getNote: GetNote,
     val getAllNotes: GetAllNotes,
-    val removeNote: RemoveNote
+    val removeNote: RemoveNote,
+    val getWordsCount: GetWordsCount
 )
