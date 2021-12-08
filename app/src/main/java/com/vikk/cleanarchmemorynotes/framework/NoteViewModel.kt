@@ -3,28 +3,37 @@ package com.vikk.cleanarchmemorynotes.framework
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.vikk.cleanarchmemorynotes.framework.di.ApplicationModule
+import com.vikk.cleanarchmemorynotes.framework.di.DaggerViewModelComponent
 import com.vikk.core.data.Note
-import com.vikk.core.repository.NoteRepository
-import com.vikk.core.usecase.AddNote
-import com.vikk.core.usecase.GetAllNotes
-import com.vikk.core.usecase.GetNote
-import com.vikk.core.usecase.RemoveNote
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class NoteViewModel(application: Application): AndroidViewModel(application) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    private val repository = NoteRepository(RoomNoteDataSource(application))
+    //Dependency Injections approach
+    @Inject
+    lateinit var useCases: UseCases
 
-    //TODO remove it after implementing Dependency Injections
-    val useCases = UseCases(
-        AddNote(repository),
-        GetNote(repository),
-        GetAllNotes(repository),
-        RemoveNote(repository)
-    )
+    init {
+        DaggerViewModelComponent.builder()
+            .applicationModule(ApplicationModule(getApplication()))
+            .build()
+            .inject(this)
+    }
+
+    //    //instantiation approach
+//    private val repository = NoteRepository(RoomNoteDataSource(application))
+
+//    val useCases = UseCases(
+//        AddNote(repository),
+//        GetNote(repository),
+//        GetAllNotes(repository),
+//        RemoveNote(repository)
+//    )
 
     val isSaved = MutableLiveData<Boolean>()
 
