@@ -28,10 +28,25 @@ class NoteViewModel(application: Application): AndroidViewModel(application) {
 
     val isSaved = MutableLiveData<Boolean>()
 
+    val currentNote = MutableLiveData<Note?>()
+
     fun saveNote(note: Note){
         coroutineScope.launch {
             // isSaved variable is based on returned rowId number
           isSaved.postValue(useCases.addNote(note)!! >= 1L)
+        }
+    }
+
+    fun getNoteById(id: Long){
+        coroutineScope.launch {
+            currentNote.postValue(useCases.getNote(id))
+        }
+    }
+
+    fun deleteNote(note: Note){
+        coroutineScope.launch {
+            useCases.removeNote(note)
+            isSaved.postValue(true)
         }
     }
 }

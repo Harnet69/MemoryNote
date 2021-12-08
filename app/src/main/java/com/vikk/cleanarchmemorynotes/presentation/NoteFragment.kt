@@ -1,18 +1,19 @@
 package com.vikk.cleanarchmemorynotes.presentation
 
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.cleanarchmemorynotes.R
 import com.example.cleanarchmemorynotes.databinding.FragmentNoteBinding
 import com.vikk.cleanarchmemorynotes.framework.NoteViewModel
 import com.vikk.core.data.Note
@@ -24,12 +25,18 @@ class NoteFragment : Fragment() {
 
     private val viewModel: NoteViewModel by viewModels()
 
-    private val currentNote = Note("", "", 0L, 0L)
+    private var currentNote = Note("", "", 0L, 0L)
+
+    // for editing purposes
+    private var noteId: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        //option menu
+        setHasOptionsMenu(true)
+
         _binding = FragmentNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,13 +46,19 @@ class NoteFragment : Fragment() {
 
         setDoneKey()
 
+        // retrieve a note for edit if user come from notes list
+        arguments?.let {
+            noteId = NoteFragmentArgs.fromBundle(it).noteId
+            if (noteId != 0L) viewModel.getNoteById(noteId)
+        }
+
         binding.saveNoteFab.setOnClickListener {
             saveNote()
         }
         observeViewModel()
     }
 
-    private fun saveNote(){
+    private fun saveNote() {
         if (binding.noteTitle.text.isNotBlank() && binding.noteContent.text.isNotBlank()) {
             val time = System.currentTimeMillis()
             currentNote.title = binding.noteTitle.text.toString()
@@ -63,9 +76,9 @@ class NoteFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.isSaved.observe(this, {isSaved ->
+        viewModel.isSaved.observe(this, { isSaved ->
             if (isSaved) {
-                Toast.makeText(context, "Note was added", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Done", Toast.LENGTH_LONG).show()
                 hideKeyboard()
                 findNavController().popBackStack()
             } else {
@@ -73,15 +86,23 @@ class NoteFragment : Fragment() {
                     .show()
             }
         })
+
+        viewModel.currentNote.observe(this, { note ->
+            note?.let {
+                currentNote = it
+                binding.noteTitle.setText(it.title, TextView.BufferType.EDITABLE)
+                binding.noteContent.setText(it.content, TextView.BufferType.EDITABLE)
+            }
+        })
     }
 
-    private fun hideKeyboard(){
+    private fun hideKeyboard() {
         val imm = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.noteTitle.windowToken, 0)
     }
 
     // if user press on DONE
-    private fun setDoneKey(){
+    private fun setDoneKey() {
         binding.noteContent.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 saveNote()
@@ -89,6 +110,30 @@ class NoteFragment : Fragment() {
             }
             false
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.note_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.deleteNote -> {
+                // dialog box
+                if (context != null && noteId != 0L) {
+                    //if we already have a note !!! import Androidx.appcompat.app
+                    AlertDialog.Builder(context!!)
+                        .setTitle("Delete note")
+                        .setMessage("Do you really want to delete the note?")
+                        .setPositiveButton("Yes") { _, _ -> viewModel.deleteNote(currentNote) }
+                        .setNegativeButton("No") { _, _ -> }
+                        .create()
+                        .show()
+                }
+            }
+        }
+        return true
     }
 
     override fun onDestroyView() {

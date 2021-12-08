@@ -9,4 +9,5 @@
     <string name="note_item_title">Title: %1$s</string>
     <string name="note_item_context">Context: %1$s</string>
     <string name="note_item_date">Date: %1$s</string>
+    <string name="delete_note">Delete note</string>
 </resources>
