@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchmemorynotes.databinding.FragmentNotesListBinding
-import com.vikk.core.data.Note
+import com.vikk.cleanarchmemorynotes.framework.NotesListViewModel
 
 class NotesListFragment : Fragment() {
+
+    private val viewModel: NotesListViewModel by viewModels()
 
     private var notesListAdapter = NotesListAdapter()
 
@@ -27,18 +31,23 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.notesListView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = notesListAdapter
+        }
+
         binding.addNoteFab.setOnClickListener {
             goToNoteDetails()
         }
+        observeViewModel()
+    }
 
-        binding.notesListView.adapter = notesListAdapter
-        binding.notesListView.layoutManager = LinearLayoutManager(requireContext())
-
-        //TODO for test purposes only
-        notesListAdapter.notes = arrayListOf(
-            Note("Title1", "Content1", 123456L, 123457L),
-            Note("Title2", "Content2", 123446L, 123447L)
-        )
+    private fun observeViewModel(){
+        viewModel.notesList.observe(this, {notesList ->
+            binding.loadingView.visibility = View.GONE
+            binding.notesListView.visibility = View.VISIBLE
+            notesListAdapter.notes = notesList.sortedByDescending { it.updateTime }
+        })
     }
 
     private fun goToNoteDetails(noteId: Long = 0L) {
@@ -47,6 +56,11 @@ class NotesListFragment : Fragment() {
                 noteId
             )
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getNotes()
     }
 
     override fun onDestroyView() {
