@@ -11,7 +11,7 @@ import com.example.cleanarchmemorynotes.R
 import com.vikk.core.data.Note
 import java.util.*
 
-class NotesListAdapter: RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {
+class NotesListAdapter(val action: ListAction): RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {
 
     private val diffUtil = object : DiffUtil.ItemCallback<Note>(){
         override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
@@ -35,20 +35,27 @@ class NotesListAdapter: RecyclerView.Adapter<NotesListAdapter.NotesListViewHolde
     }
 
     override fun onBindViewHolder(holder: NotesListViewHolder, position: Int) {
-        val noteTitle = holder.itemView.findViewById<TextView>(R.id.note_item_title)
-        val noteContent = holder.itemView.findViewById<TextView>(R.id.note_item_content)
-        val noteDate = holder.itemView.findViewById<TextView>(R.id.note_item_date)
-
-        val note = notes[position]
-
-        holder.itemView.apply {
-            noteTitle.text = context.getString(R.string.note_item_title, note.title)
-            noteContent.text = context.getString(R.string.note_item_context, note.content)
-            noteDate.text = context.getString(R.string.note_item_date, Date(note.updateTime).toString())
-        }
+        holder.bind(notes[position])
     }
 
-    class NotesListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    inner class NotesListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        private val noteTitle: TextView = itemView.findViewById(R.id.note_item_title)
+        val noteContent: TextView = itemView.findViewById(R.id.note_item_content)
+        private val noteDate: TextView = itemView.findViewById(R.id.note_item_date)
+
+        fun bind(note: Note) {
+            itemView.apply {
+                noteTitle.text = context.getString(R.string.note_item_title, note.title)
+                noteContent.text = context.getString(R.string.note_item_context, note.content)
+                noteDate.text =
+                    context.getString(R.string.note_item_date, Date(note.updateTime).toString())
+            }
+
+            itemView.setOnClickListener {
+                action.onClick(note.id)
+            }
+        }
+    }
 
     override fun getItemCount(): Int {
       return notes.size
