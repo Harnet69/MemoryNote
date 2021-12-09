@@ -15,7 +15,9 @@ import com.example.cleanarchmemorynotes.R
 import com.example.cleanarchmemorynotes.databinding.FragmentNoteBinding
 import com.vikk.cleanarchmemorynotes.framework.NoteViewModel
 import com.vikk.core.data.Note
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteFragment : Fragment() {
 
     private var _binding: FragmentNoteBinding? = null

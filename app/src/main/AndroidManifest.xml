@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name="com.vikk.cleanarchmemorynotes.framework.di.MemoryNoteApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         tools:replace="android:allowBackup"

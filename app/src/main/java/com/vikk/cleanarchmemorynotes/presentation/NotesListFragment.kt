@@ -10,7 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchmemorynotes.databinding.FragmentNotesListBinding
 import com.vikk.cleanarchmemorynotes.framework.NotesListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NotesListFragment : Fragment(), ListAction {
 
     private val viewModel: NotesListViewModel by viewModels()
