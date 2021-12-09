@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cleanarchmemorynotes">
+    package="com.example.cleanarchmemorynotes"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        tools:replace="android:allowBackup"
+        android:allowBackup="false"
+        android:usesCleartextTraffic="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CleanArchMemoryNotes">

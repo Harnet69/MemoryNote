@@ -1,9 +1,7 @@
 package com.vikk.cleanarchmemorynotes.presentation
 
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager

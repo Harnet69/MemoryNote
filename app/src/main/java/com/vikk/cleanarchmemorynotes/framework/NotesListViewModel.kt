@@ -6,11 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.vikk.cleanarchmemorynotes.framework.di.ApplicationModule
 import com.vikk.cleanarchmemorynotes.framework.di.DaggerViewModelComponent
 import com.vikk.core.data.Note
-import com.vikk.core.repository.NoteRepository
-import com.vikk.core.usecase.AddNote
-import com.vikk.core.usecase.GetAllNotes
-import com.vikk.core.usecase.GetNote
-import com.vikk.core.usecase.RemoveNote
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
