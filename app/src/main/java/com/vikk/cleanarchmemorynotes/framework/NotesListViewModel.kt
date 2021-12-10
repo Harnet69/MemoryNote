@@ -2,7 +2,8 @@ package com.vikk.cleanarchmemorynotes.framework
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vikk.core.data.Note
+import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.vikk.cleanarchmemorynotes.framework.repository.NoteRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,17 +12,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NotesListViewModel @Inject constructor(var useCases: UseCases) : ViewModel(){
+class NotesListViewModel @Inject constructor(val repository: NoteRepositoryInterface) : ViewModel(){
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    val notesList = MutableLiveData<List<Note>>()
+    val notesList = MutableLiveData<List<NoteEntity>>()
 
     fun getNotes() {
         coroutineScope.launch {
             //delay for testing purposes
             delay(1000L)
-            val notes = useCases.getAllNotes()
-            notes.forEach { it.wordsCount = useCases.getWordsCount.invoke(it).toLong() }
+            val notes = repository.getAllNotes()
+//            notes.forEach { it.wordsCount = repository.getWordsCount.invoke(it).toLong() }
             notesList.postValue(notes)
         }
     }

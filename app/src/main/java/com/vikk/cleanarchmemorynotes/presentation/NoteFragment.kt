@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.cleanarchmemorynotes.R
 import com.example.cleanarchmemorynotes.databinding.FragmentNoteBinding
 import com.vikk.cleanarchmemorynotes.framework.NoteViewModel
-import com.vikk.core.data.Note
+import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +25,7 @@ class NoteFragment : Fragment() {
 
     private val viewModel: NoteViewModel by viewModels()
 
-    private var currentNote = Note("", "", 0L, 0L)
+    private var currentNote = NoteEntity("", "", 0L, 0L)
 
     // for editing purposes
     private var noteId: Long = 0L
