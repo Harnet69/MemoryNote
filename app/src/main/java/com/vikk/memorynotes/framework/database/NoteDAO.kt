@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.framework.database
+package com.vikk.memorynotes.framework.database
 
 import androidx.room.Dao
 import androidx.room.Delete

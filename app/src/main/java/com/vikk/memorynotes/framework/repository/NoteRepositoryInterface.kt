@@ -1,6 +1,6 @@
-package com.vikk.cleanarchmemorynotes.framework.repository
+package com.vikk.memorynotes.framework.repository
 
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.database.NoteEntity
 
 interface NoteRepositoryInterface {
     suspend fun addNote(note: NoteEntity): Long?

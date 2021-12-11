@@ -1,9 +1,9 @@
-package com.vikk.cleanarchmemorynotes.framework
+package com.vikk.memorynotes.framework.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
-import com.vikk.cleanarchmemorynotes.framework.repository.NoteRepositoryInterface
+import com.vikk.memorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.repository.NoteRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

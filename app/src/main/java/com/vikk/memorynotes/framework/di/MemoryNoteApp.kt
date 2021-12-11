@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.framework.di
+package com.vikk.memorynotes.framework.di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

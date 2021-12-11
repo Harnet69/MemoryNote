@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.presentation
+package com.vikk.memorynotes.presentation
 
 /*
     Define what item in RecyclerView was clicked

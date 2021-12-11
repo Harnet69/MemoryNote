@@ -1,8 +1,8 @@
 package com.vikk.memorynotes.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
-import com.vikk.cleanarchmemorynotes.framework.repository.NoteRepositoryInterface
+import com.vikk.memorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.repository.NoteRepositoryInterface
 
 class FakeNoteRepository: NoteRepositoryInterface {
     private val notes = arrayListOf<NoteEntity>()

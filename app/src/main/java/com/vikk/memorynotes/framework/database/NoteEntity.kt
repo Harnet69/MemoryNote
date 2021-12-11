@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.framework.database
+package com.vikk.memorynotes.framework.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

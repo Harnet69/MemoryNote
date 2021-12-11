@@ -1,10 +1,9 @@
-package com.vikk.memorynotes.viewModel
+package com.vikk.memorynotes.framework.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.google.common.truth.Truth.assertThat
-import com.vikk.cleanarchmemorynotes.framework.NoteViewModel
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.google.common.truth.Truth
 import com.vikk.memorynotes.MainCoroutineRule
+import com.vikk.memorynotes.framework.database.NoteEntity
 import com.vikk.memorynotes.getOrAwaitValueTest
 import com.vikk.memorynotes.repository.FakeNoteRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,25 +27,34 @@ class NoteViewModelTest {
     private lateinit var viewModel: NoteViewModel
 
     @Before
-    fun setup(){
+    fun setup() {
         //Test Doubles - FakeNoteRepository
         viewModel = NoteViewModel(FakeNoteRepository())
     }
 
     @Test
-    fun `add note`(){
+    fun `add note note was added`() {
         viewModel.addNote(exampleNote)
         val isSaved = viewModel.isSaved.getOrAwaitValueTest()
         println(isSaved)
-        assertThat(isSaved).isTrue()
+        Truth.assertThat(isSaved).isTrue()
     }
 
     @Test
-    fun `get note by id receive note`(){
+    fun `get note by id receive note`() {
         viewModel.addNote(exampleNote)
         viewModel.getNoteById(1L)
         val currentNote = viewModel.currentNote.getOrAwaitValueTest()
-        assertThat(currentNote).isEqualTo(exampleNote)
+        Truth.assertThat(currentNote).isEqualTo(exampleNote)
+
+    }
+
+    @Test
+    fun `delete note note was deleted`(){
+        viewModel.addNote(exampleNote)
+        viewModel.deleteNote(exampleNote)
+        val isSaved = viewModel.isSaved.getOrAwaitValueTest()
+        Truth.assertThat(isSaved).isTrue()
 
     }
 

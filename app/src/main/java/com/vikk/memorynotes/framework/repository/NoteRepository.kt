@@ -1,7 +1,7 @@
-package com.vikk.cleanarchmemorynotes.framework.repository
+package com.vikk.memorynotes.framework.repository
 
-import com.vikk.cleanarchmemorynotes.framework.database.NoteDAO
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.database.NoteDAO
+import com.vikk.memorynotes.framework.database.NoteEntity
 import javax.inject.Inject
 
 class NoteRepository @Inject constructor(private val noteDAO: NoteDAO): NoteRepositoryInterface {

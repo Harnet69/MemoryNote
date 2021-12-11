@@ -1,14 +1,14 @@
-package com.vikk.cleanarchmemorynotes.framework.di
+package com.vikk.memorynotes.framework.di
 
 import android.content.Context
 import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.cleanarchmemorynotes.R
-import com.vikk.cleanarchmemorynotes.framework.database.NoteDAO
-import com.vikk.cleanarchmemorynotes.framework.database.NotesDatabase
-import com.vikk.cleanarchmemorynotes.framework.repository.NoteRepository
-import com.vikk.cleanarchmemorynotes.framework.repository.NoteRepositoryInterface
+import com.vikk.memorynotes.framework.database.NoteDAO
+import com.vikk.memorynotes.framework.database.NotesDatabase
+import com.vikk.memorynotes.framework.repository.NoteRepository
+import com.vikk.memorynotes.framework.repository.NoteRepositoryInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

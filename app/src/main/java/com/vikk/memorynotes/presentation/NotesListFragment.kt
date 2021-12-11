@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.presentation
+package com.vikk.memorynotes.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cleanarchmemorynotes.databinding.FragmentNotesListBinding
-import com.vikk.cleanarchmemorynotes.framework.NotesListViewModel
+import com.vikk.memorynotes.framework.viewModel.NotesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

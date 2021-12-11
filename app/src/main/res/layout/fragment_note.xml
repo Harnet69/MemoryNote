@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vikk.cleanarchmemorynotes.presentation.NoteFragment">
+    tools:context="com.vikk.memorynotes.presentation.NoteFragment">
 
     <EditText
         android:id="@+id/noteTitle"

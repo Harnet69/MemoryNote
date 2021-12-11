@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.presentation
+package com.vikk.memorynotes.presentation
 
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
@@ -13,8 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.cleanarchmemorynotes.R
 import com.example.cleanarchmemorynotes.databinding.FragmentNoteBinding
-import com.vikk.cleanarchmemorynotes.framework.NoteViewModel
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.viewModel.NoteViewModel
+import com.vikk.memorynotes.framework.database.NoteEntity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

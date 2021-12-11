@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.presentation
+package com.vikk.memorynotes.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cleanarchmemorynotes.R
-import com.vikk.cleanarchmemorynotes.framework.database.NoteEntity
+import com.vikk.memorynotes.framework.database.NoteEntity
 import java.util.*
 
 class NotesListAdapter(val action: ListAction): RecyclerView.Adapter<NotesListAdapter.NotesListViewHolder>() {

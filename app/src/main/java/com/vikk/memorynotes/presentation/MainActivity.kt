@@ -1,4 +1,4 @@
-package com.vikk.cleanarchmemorynotes.presentation
+package com.vikk.memorynotes.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
