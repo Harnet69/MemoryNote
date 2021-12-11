@@ -11,27 +11,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor(var repository: NoteRepositoryInterface): ViewModel() {
+class NoteViewModel @Inject constructor(var repository: NoteRepositoryInterface) : ViewModel() {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     val isSaved = MutableLiveData<Boolean>()
 
     val currentNote = MutableLiveData<NoteEntity?>()
 
-    fun saveNote(note: NoteEntity){
+    fun addNote(note: NoteEntity) {
         coroutineScope.launch {
-            // isSaved variable is based on returned rowId number
-          isSaved.postValue(repository.addNote(note)!! >= 1L)
+            repository.addNote(note)
+            isSaved.postValue(true)
         }
     }
 
-    fun getNoteById(id: Long){
+    fun getNoteById(id: Long) {
         coroutineScope.launch {
             currentNote.postValue(repository.getNoteById(id))
         }
     }
 
-    fun deleteNote(note: NoteEntity){
+    fun deleteNote(note: NoteEntity) {
         coroutineScope.launch {
             repository.removeNote(note)
             isSaved.postValue(true)

@@ -69,7 +69,7 @@ class NoteFragment : Fragment() {
                 currentNote.creationTime = time
             }
 
-            viewModel.saveNote(currentNote)
+            viewModel.addNote(currentNote)
         } else {
             Toast.makeText(context, "Field can't be empty", Toast.LENGTH_LONG).show()
         }
